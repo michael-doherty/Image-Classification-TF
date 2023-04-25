@@ -1,7 +1,13 @@
 # Packages
 import os
 import pandas as pd
+import zipfile
 from lib.logging import *
+
+# Extract
+with zipfile.ZipFile('data/the-car-connection-picture-dataset.zip', 'r') as zip_ref:
+    zip_ref.extractall('archive/')
+
 
 # Files 
 filenames = os.listdir('archive')
