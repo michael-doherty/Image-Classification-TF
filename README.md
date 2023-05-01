@@ -15,13 +15,5 @@
  - Command: python3 lambda_functions/train.py
  - Trained model is saved in output/ currently
 
-### Predict:
-
-  - Predict: WIP
-
-### Deployment
-
-  - AWS: WIP
-
 ### Reference:
  - [The Car Connection Picture Dataset](https://www.kaggle.com/datasets/prondeau/the-car-connection-picture-dataset)
