@@ -1,0 +1,40 @@
+name: deployment
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install severless
+        run: npm install -g serverless
+      
+      - name: Install serverless plugins
+        run: |
+            serverless plugin install -n serverless-plugin-ifelse
+            serverless plugin install -n serverless-plugin-custom-roles
+      - name: Copy env vars from github secrets
+        if: github.event_name == 'push' && job.status == 'success'
+        run: |
+           echo "KAGGLE_USERNAME=${{ secrets.KAGGLE_USERNAME }}" >> .env
+           echo "KAGGLE_KEY=${{ secrets.KAGGLE_KEY }}" >> .env
+      - name: serverless deploy
+        if: github.event_name == 'push' && job.status == 'success'
+        run: serverless deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

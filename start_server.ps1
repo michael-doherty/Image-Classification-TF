@@ -1,0 +1,1 @@
+tensorflow_serving --port=8500 --rest_api_port=8501 --model_name=cars_model --model_base_path=output/1/
