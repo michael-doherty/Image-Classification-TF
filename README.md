@@ -3,7 +3,7 @@
 ### Summary:
 
  - This is a **multi-class image classification** problem.
- - The purpose of this project is to **classify car images into 10 classes**. 
+ - The purpose of this project is to **classify car images into 42 classes of car makes**. 
  - The model was built using ResNet via Tensorflow
  
 ### Data:
